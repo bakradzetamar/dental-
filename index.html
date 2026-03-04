@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium dental supplies and materials for professional dental practices. High-quality restorative, endodontic, and surgical products.">
+    <meta name="keywords" content="dental supplies, dental materials, restorative, composite, endodontic">
+    <title data-translate="pageTitle">DentPro Supplies - Premium Dental Materials</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container header-content">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2C8 2 5 5 5 9c0 3 2 7 7 12 5-5 7-9 7-12 0-4-3-7-7-7z"/>
+                    <circle cx="12" cy="9" r="2"/>
+                </svg>
+                <span class="logo-text">DentPro</span>
+            </div>
+            
+            <div class="search-filter-group">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="პროდუქტის ძებნა..." aria-label="Search products">
+                </div>
+                
+                <select id="categoryFilter" aria-label="Filter by category">
+                    <option value="" data-translate="allCategories">All Categories</option>
+                </select>
+                
+                <label class="stock-toggle">
+                    <input type="checkbox" id="stockToggle" checked>
+                    <span data-translate="inStock">In Stock Only</span>
+                </label>
+            </div>
+            
+            <div class="header-actions">
+                <div class="language-switcher">
+                    <button id="langKa" class="lang-btn active">GE</button>
+                    <button id="langEn" class="lang-btn">EN</button>
+                </div>
+                
+                <button id="adminBtn" class="btn btn-secondary" aria-label="Open admin panel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
+                        <path d="M12 2a10 10 0 0 1 10 10"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <span data-translate="admin">Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" role="region" aria-label="Introduction">
+        <div class="container">
+            <h1 class="hero-title" data-translate="heroTitle">Precision Materials for Modern Dentistry</h1>
+            <p class="hero-subtitle" data-translate="heroSubtitle">Trusted by dental professionals worldwide for quality, reliability, and innovation.</p>
+        </div>
+    </section>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar container">
+        <div class="price-filters">
+            <input type="number" id="minPrice" placeholder="Min Price" min="0" step="0.01" aria-label="Minimum price" data-translate-placeholder="minPrice">
+            <input type="number" id="maxPrice" placeholder="Max Price" min="0" step="0.01" aria-label="Maximum price" data-translate-placeholder="maxPrice">
+        </div>
+        
+        <div class="sort-group">
+            <label for="sortSelect" data-translate="sortBy">Sort by:</label>
+            <select id="sortSelect" aria-label="Sort products">
+                <option value="newest" data-translate="sortNewest">Newest</option>
+                <option value="price-asc" data-translate="sortPriceAsc">Price: Low to High</option>
+                <option value="price-desc" data-translate="sortPriceDesc">Price: High to Low</option>
+                <option value="name-asc" data-translate="sortName">Name: A-Z</option>
+            </select>
+        </div>
+        
+        <div class="results-count" id="resultsCount" aria-live="polite"></div>
+    </div>
+
+    <!-- Product Grid -->
+    <main class="container" role="main">
+        <div id="productGrid" class="product-grid" role="list" aria-label="Product catalog"></div>
+        
+        <div id="noResults" class="no-results" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <p data-translate="noResults">No products found matching your criteria.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3 data-translate="contact">Contact</h3>
+                <p>Email: info@dentpro.com</p>
+                <p data-translate="phone">Phone: +995 32 2 123 456</p>
+                <p data-translate="address">Address: 123 Dental Street, Tbilisi, Georgia</p>
+            </div>
+            <div class="footer-section">
+                <h3 data-translate="legal">Legal</h3>
+                <p>&copy; 2026 DentPro Supplies. <span data-translate="allRights">All rights reserved.</span></p>
+                <p data-translate="medicalReg">Medical Device Registration: MD-GEO-2026-001</p>
+                <p data-translate="isoCert">ISO 13485 Certified</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+        <div class="modal-content modal-lg">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="adminTitle" hidden>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="adminTitle" data-translate="adminPanel">Admin Panel</h2>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="products" data-translate="tabProducts">Products</button>
+                    <button class="tab-btn" data-tab="add" data-translate="tabAddProduct">Add Product</button>
+                </div>
+                
+                <div id="productsTab" class="tab-content active">
+                    <div id="adminProductList" class="admin-product-list"></div>
+                </div>
+                
+                <div id="addTab" class="tab-content">
+                    <form id="productForm" class="admin-form">
+                        <input type="hidden" id="productId">
+                        
+                        <!-- Bilingual Name -->
+                        <div class="form-row bilingual">
+                            <div class="form-group">
+                                <label for="prodNameKa">სახელი (KA) *</label>
+                                <input type="text" id="prodNameKa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prodNameEn">Name (EN) *</label>
+                                <input type="text" id="prodNameEn" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prodCategory" data-translate="labelCategory">Category</label>
+                                <input type="text" id="prodCategory" list="categoryList">
+                                <datalist id="categoryList"></datalist>
+                            </div>
+                            <div class="form-group">
+                                <label for="prodSku" data-translate="labelSku">SKU</label>
+                                <input type="text" id="prodSku">
+                            </div>
+                        </div>
+                        
+                        <!-- Bilingual Short Description -->
+                        <div class="form-row bilingual">
+                            <div class="form-group">
+                                <label for="prodShortDescKa">მოკლე აღწერა (KA)</label>
+                                <input type="text" id="prodShortDescKa" maxlength="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="prodShortDescEn">Short Description (EN)</label>
+                                <input type="text" id="prodShortDescEn" maxlength="100">
+                            </div>
+                        </div>
+                        
+                        <!-- Bilingual Full Description -->
+                        <div class="form-row bilingual">
+                            <div class="form-group">
+                                <label for="prodDescKa">სრული აღწერა (KA)</label>
+                                <textarea id="prodDescKa" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="prodDescEn">Full Description (EN)</label>
+                                <textarea id="prodDescEn" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prodPrice" data-translate="labelPrice">Price *</label>
+                                <input type="number" id="prodPrice" step="0.01" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="prodCurrency" data-translate="labelCurrency">Currency</label>
+                                <input type="text" id="prodCurrency" value="GEL">
+                            </div>
+                            <div class="form-group">
+                                <label for="prodUnit" data-translate="labelUnit">Unit</label>
+                                <input type="text" id="prodUnit" placeholder="e.g., per box">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prodStock" data-translate="labelStock">Stock Quantity</label>
+                                <input type="number" id="prodStock" min="0" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="prodManufacturer" data-translate="labelManufacturer">Manufacturer</label>
+                                <input type="text" id="prodManufacturer">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-translate="labelDimensions">Dimensions (mm)</label>
+                            <div class="form-row">
+                                <input type="number" id="dimWidth" placeholder="Width" min="0" data-translate-placeholder="width">
+                                <input type="number" id="dimHeight" placeholder="Height" min="0" data-translate-placeholder="height">
+                                <input type="number" id="dimDepth" placeholder="Depth" min="0" data-translate-placeholder="depth">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="prodImages" data-translate="labelImages">Image URLs (one per line)</label>
+                            <textarea id="prodImages" rows="2" placeholder="https://example.com/image1.jpg"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="prodTags" data-translate="labelTags">Tags (comma separated)</label>
+                            <input type="text" id="prodTags" placeholder="composite, restorative, anterior">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" data-translate="btnSave">Save Product</button>
+                            <button type="button" id="cancelEdit" class="btn btn-secondary" hidden data-translate="btnCancel">Cancel</button>
+                        </div>
+                    </form>
+                    
+                    <div class="admin-actions">
+                        <button id="downloadJson" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            <span data-translate="btnDownload">Download products.json</span>
+                        </button>
+                        <button id="resetData" class="btn btn-danger" data-translate="btnReset">Reset to Default</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

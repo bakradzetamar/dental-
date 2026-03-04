@@ -1,0 +1,83 @@
+[
+  {
+    "id": "p001",
+    "name": "Universal Composite Restorative - Shade A2",
+    "category": "Restoratives",
+    "shortDescription": "High-strength composite, low shrinkage.",
+    "description": "Premium nano-hybrid composite restorative material featuring exceptional handling characteristics and high polishability. Low polymerization shrinkage ensures excellent marginal integrity. Ideal for anterior and posterior restorations with natural aesthetics.",
+    "price": 45.90,
+    "currency": "GEL",
+    "unit": "per syringe (3g)",
+    "stockQuantity": 24,
+    "sku": "COMP-A2-3G",
+    "dimensions": {
+      "width_mm": 10,
+      "height_mm": 150,
+      "depth_mm": 10
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=640&h=480&fit=crop"
+    ],
+    "manufacturer": "DentalCo",
+    "tags": [
+      "composite",
+      "restorative",
+      "a2"
+    ],
+    "createdAt": "2026-03-04"
+  },
+  {
+    "id": "p002",
+    "name": "ProGutta Percha Points - Size 25mm",
+    "category": "Endodontics",
+    "shortDescription": "Tapered gutta percha for root canal filling.",
+    "description": "High-quality gutta percha points with standardized taper for consistent root canal obturation. Excellent radiopacity and easy handling. Compatible with all major nickel-titanium rotary systems.",
+    "price": 28.50,
+    "currency": "GEL",
+    "unit": "per box (60 points)",
+    "stockQuantity": 15,
+    "sku": "GP-25-060",
+    "dimensions": {
+      "width_mm": 50,
+      "height_mm": 30,
+      "depth_mm": 20
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=640&h=480&fit=crop"
+    ],
+    "manufacturer": "EndoPro",
+    "tags": [
+      "endodontics",
+      "gutta percha",
+      "root canal"
+    ],
+    "createdAt": "2026-03-03"
+  },
+  {
+    "id": "p003",
+    "name": "Surgical Aspirator Tips - Sterile",
+    "category": "Surgery",
+    "shortDescription": "Sterile disposable surgical aspirator tips.",
+    "description": "High-volume surgical aspirator tips made from medical-grade polymer. Sterile single-use design ensures maximum infection control. Flexible yet rigid construction provides optimal suction control during surgical procedures.",
+    "price": 12.00,
+    "currency": "GEL",
+    "unit": "per pack (25 pcs)",
+    "stockQuantity": 0,
+    "sku": "ASP-25-S",
+    "dimensions": {
+      "width_mm": 80,
+      "height_mm": 150,
+      "depth_mm": 40
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=640&h=480&fit=crop"
+    ],
+    "manufacturer": "SurgiMed",
+    "tags": [
+      "surgery",
+      "aspirator",
+      "disposable"
+    ],
+    "createdAt": "2026-03-02"
+  }
+]
